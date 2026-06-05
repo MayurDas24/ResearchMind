@@ -217,33 +217,6 @@ Pipeline completed in ~45 seconds
 ✓ Writer Chain     → 1,240-word structured report generated
 ✓ Critic Chain     → Final Score: 7.4/10
 ✓ Confidence Score → 8.1/10
-```
-
----
-
-## Roadmap
-
-- [ ] Persistent vector store with session memory (ChromaDB / Pinecone)
-- [ ] PDF export of generated reports
-- [ ] Parallel multi-source scraping with `asyncio`
-- [ ] Agent memory across research sessions
-- [ ] Citation linking — inline source references in the final report
-- [ ] Custom rubric editor for the Critic agent
-- [ ] Docker deployment with `docker-compose`
-
----
-
-## What I Learned Building This
-
-This project gave me hands-on experience with the full stack of modern applied AI engineering:
-
-- Designing stateful multi-agent systems where agents have distinct roles, toolsets, and prompts rather than being a single monolithic LLM call
-- Implementing a full RAG pipeline from raw text to retrieved context — including the non-obvious details like chunk overlap, embedding normalisation, and fallback strategies when retrieval returns low-quality chunks
-- Working with LangChain Expression Language (LCEL) for declarative chain composition and understanding when to use chains vs. agents
-- The difference between LLM self-evaluation (Critic) and objective similarity-based scoring (Confidence) — and why both matter for evaluating generated content quality
-- Production UI patterns in Streamlit for long-running async-style pipelines (session state machines, rerun triggers, live status updates)
-
----
 
 ## License
 

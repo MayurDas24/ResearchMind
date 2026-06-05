@@ -206,8 +206,8 @@ Standard fixed-size chunking loses context at boundaries. 50-word overlap ensure
 
 ## Sample Output
 
-```
-Topic: "Transformer architecture innovations in 2025"
+Topic: "Tra
+nsformer architecture innovations in 2025"
 
 Pipeline completed in ~45 seconds
 ─────────────────────────────────────────────
@@ -217,19 +217,10 @@ Pipeline completed in ~45 seconds
 ✓ Writer Chain     → 1,240-word structured report generated
 ✓ Critic Chain     → Final Score: 7.4/10
 ✓ Confidence Score → 8.1/10
+License
 
----
+MIT License — see LICENSE for details.
 
-## License
+Built by Mayur · B.Tech Computer Engineering · MIT Manipal
 
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-<div align="center">
-
-Built by **Mayur** · B.Tech Computer Engineering · MIT Manipal
-
-*If this project helped you, a ⭐ on GitHub goes a long way.*
-
-</div>
+If this project helped you, a ⭐ on GitHub goes a long way.

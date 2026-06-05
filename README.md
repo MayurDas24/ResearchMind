@@ -47,62 +47,6 @@ A semantic confidence score is then computed by embedding both the report and th
 
 The entire pipeline is wrapped in a polished Streamlit UI with live step-by-step status tracking.
 
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        ResearchMind Pipeline                        │
-│                                                                     │
-│   User Input (Topic)                                                │
-│         │                                                           │
-│         ▼                                                           │
-│   ┌──────────────┐     Tavily API      ┌──────────────────────┐    │
-│   │ Search Agent │ ──────────────────► │  Top 5 Web Results   │    │
-│   │  (ReAct/LG)  │                     │  title, url, snippet │    │
-│   └──────────────┘                     └──────────┬───────────┘    │
-│                                                   │                │
-│         ▼                                         ▼                │
-│   ┌──────────────┐   requests +        ┌──────────────────────┐    │
-│   │ Reader Agent │   BeautifulSoup     │  Full Page Text      │    │
-│   │  (ReAct/LG)  │ ──────────────────► │  (cleaned, 8k chars) │    │
-│   └──────────────┘                     └──────────┬───────────┘    │
-│                                                   │                │
-│         ▼                                         ▼                │
-│   ┌──────────────────────────────────────────────────────────┐     │
-│   │                    RAG Pipeline                          │     │
-│   │                                                          │     │
-│   │  chunk_text()  ──►  SentenceTransformer  ──►  FAISS      │     │
-│   │  (500 words,        (all-MiniLM-L6-v2)       IndexFlatL2 │     │
-│   │   50 overlap)       dense embeddings         ANN search  │     │
-│   │                                                    │     │     │
-│   │                                     top-k chunks ◄─┘     │     │
-│   └──────────────────────────────────────────────────────────┘     │
-│         │                                                           │
-│         ▼                                                           │
-│   ┌──────────────┐                     ┌──────────────────────┐    │
-│   │ Writer Chain │   LLaMA 3.3 70B     │  Structured Report   │    │
-│   │  (LCEL pipe) │ ──────────────────► │  Markdown, 800+ wds  │    │
-│   └──────────────┘   via Groq API      └──────────┬───────────┘    │
-│                                                   │                │
-│         ▼                                         ▼                │
-│   ┌──────────────┐                     ┌──────────────────────┐    │
-│   │ Critic Chain │   LLaMA 3.3 70B     │  Weighted Score Card │    │
-│   │  (LCEL pipe) │ ──────────────────► │  5 rubric dimensions │    │
-│   └──────────────┘                     └──────────────────────┘    │
-│         │                                                           │
-│         ▼                                                           │
-│   ┌──────────────────────────────────────────────────────────┐     │
-│   │             Confidence Scorer (validator.py)             │     │
-│   │                                                          │     │
-│   │  embed(report) · embed(source_chunks)                    │     │
-│   │  cosine_similarity → max → × 10 → confidence / 10       │     │
-│   └──────────────────────────────────────────────────────────┘     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
----
 
 ## AI/ML Concepts Implemented
 

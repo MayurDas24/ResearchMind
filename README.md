@@ -218,6 +218,8 @@ Pipeline completed in ~45 seconds
 ✓ Critic Chain     → Final Score: 7.4/10
 ✓ Confidence Score → 8.1/10
 
+---
+
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.

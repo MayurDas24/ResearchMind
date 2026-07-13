@@ -1,5 +1,11 @@
-const Dashboard = () => {
-    return <div>Dashboard</div>;
+const Register = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <h1 className="text-3xl font-bold">
+        Register Page
+      </h1>
+    </div>
+  );
 };
 
-export default Dashboard;
+export default Register;

@@ -1,5 +1,9 @@
-const Dashboard = () => {
-    return <div>Dashboard</div>;
+const History = () => {
+  return (
+    <div>
+      <h1 className="text-3xl font-bold">History</h1>
+    </div>
+  );
 };
 
-export default Dashboard;
+export default History;

@@ -103,11 +103,6 @@ Open `http://localhost:5173`.
 ├── ai-service/   FastAPI multi-agent research pipeline
 └── docs/         Architecture notes
 
-## License
-
-MIT
-
----
 
 <div align="center">
 

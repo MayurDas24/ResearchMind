@@ -21,3 +21,105 @@ body {
 * {
   box-sizing: border-box;
 }
+/* highlight.js dark theme override for report code blocks */
+.hljs {
+  background: #18181b !important;
+  color: #e4e4e7;
+}
+.hljs-keyword, .hljs-selector-tag, .hljs-literal { color: #f472b6; }
+.hljs-string, .hljs-attr { color: #a3e635; }
+.hljs-number { color: #fb923c; }
+.hljs-comment { color: #71717a; font-style: italic; }
+.hljs-function, .hljs-title { color: #60a5fa; }
+
+/* ============================================= */
+/* PRINT STYLES — Report Export as PDF           */
+/* ============================================= */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  /* Hide app chrome */
+  header,
+  aside,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  /* Force light, high-contrast text for the whole report */
+  .prose,
+  .prose * {
+    color: #111111 !important;
+    background: transparent !important;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    color: #000000 !important;
+    border-color: #cccccc !important;
+    page-break-after: avoid;
+  }
+
+  .prose p,
+  .prose li {
+    color: #1a1a1a !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  .prose a {
+    color: #0f766e !important;
+    text-decoration: underline !important;
+  }
+
+  .prose code {
+    background: #f1f1f1 !important;
+    color: #b91c1c !important;
+    border: 1px solid #ddd;
+  }
+
+  .prose pre,
+  .prose pre code {
+    background: #f7f7f7 !important;
+    color: #111111 !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .prose table {
+    border: 1px solid #ccc !important;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #ccc !important;
+    color: #111111 !important;
+  }
+
+  .prose blockquote {
+    border-left: 3px solid #999 !important;
+    color: #333333 !important;
+  }
+
+  /* Metadata panel: print as a clean summary block */
+  .grid {
+    display: block !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #555555 !important;
+  }
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

@@ -1,3 +1,4 @@
+//client/src/lib/queryClient.ts
 import { QueryClient } from "@tanstack/react-query";
 
 export const queryClient = new QueryClient({
@@ -5,6 +6,7 @@ export const queryClient = new QueryClient({
     queries: {
       retry: 1,
       refetchOnWindowFocus: false,
+      staleTime: 1000 * 30,
     },
   },
 });

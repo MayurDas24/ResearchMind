@@ -1,7 +1,16 @@
 import AppRoutes from "@/routes";
+import useSocket from "./hooks/useSocket";
+import { ToastProvider } from "@/context/ToastContext";
+import ToastContainer from "@/components/ui/Toast";
 
 function App() {
-  return <AppRoutes />;
+  useSocket();
+  return (
+    <ToastProvider>
+      <AppRoutes />
+      <ToastContainer />
+    </ToastProvider>
+  );
 }
 
 export default App;

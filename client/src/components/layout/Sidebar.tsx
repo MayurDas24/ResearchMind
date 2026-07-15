@@ -1,69 +1,49 @@
-import {
-  FaChartBar,
-  FaClock,
-  FaHome,
-  FaRobot,
-  FaUser,
-} from "react-icons/fa";
-
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { LayoutDashboard, FlaskConical, History as HistoryIcon } from "lucide-react";
 
 const links = [
-  {
-    path: "/",
-    icon: <FaHome />,
-    title: "Dashboard",
-  },
-
-  {
-    path: "/research",
-    icon: <FaRobot />,
-    title: "Research",
-  },
-
-  {
-    path: "/history",
-    icon: <FaClock />,
-    title: "History",
-  },
-
-  {
-    path: "/analytics",
-    icon: <FaChartBar />,
-    title: "Analytics",
-  },
-
-  {
-    path: "/profile",
-    icon: <FaUser />,
-    title: "Profile",
-  },
+  { to: "/", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/research", label: "New Research", icon: FlaskConical },
+  { to: "/history", label: "History", icon: HistoryIcon },
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
+
   return (
-    <aside className="w-64 border-r border-zinc-800 bg-zinc-950 h-[calc(100vh-64px)]">
+    <aside className="w-60 border-r border-zinc-800 min-h-[calc(100vh-4rem)] p-4 hidden md:block">
+      <nav className="flex flex-col gap-1">
+        {links.map(({ to, label, icon: Icon }) => {
+          const isActive =
+            to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
 
-      <nav className="p-4 flex flex-col gap-2">
+          return (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === "/"}
+              className="relative flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors"
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="sidebar-active"
+                  className="absolute inset-0 bg-emerald-500/10 rounded-lg"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
 
-        {links.map((link) => (
-          <NavLink
-            key={link.path}
-            to={link.path}
-            className={({ isActive }) =>
-              `flex items-center gap-3 rounded-lg px-4 py-3 transition ${
-                isActive
-                  ? "bg-indigo-600 text-white"
-                  : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
-              }`
-            }
-          >
-            {link.icon}
-
-            {link.title}
-          </NavLink>
-        ))}
-
+              <span
+                className={`relative z-10 flex items-center gap-3 ${
+                  isActive ? "text-emerald-400" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                <Icon size={18} />
+                {label}
+              </span>
+            </NavLink>
+          );
+        })}
       </nav>
     </aside>
   );

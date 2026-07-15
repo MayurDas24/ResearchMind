@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-from langgraph.prebuilt import create_react_agent
+
 
 from tools import scrape_url, web_search
 
@@ -13,23 +13,6 @@ load_dotenv()
 # LLM
 # =============================================================================
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
-
-
-# =============================================================================
-# SEARCH AGENT  (LangGraph ReAct agent)
-# =============================================================================
-def build_search_agent():
-    """Returns a compiled LangGraph ReAct agent with web_search tool."""
-    return create_react_agent(model=llm, tools=[web_search])
-
-
-# =============================================================================
-# READER AGENT  (LangGraph ReAct agent)
-# =============================================================================
-def build_reader_agent():
-    """Returns a compiled LangGraph ReAct agent with scrape_url tool."""
-    return create_react_agent(model=llm, tools=[scrape_url])
-
 
 # =============================================================================
 # WRITER CHAIN

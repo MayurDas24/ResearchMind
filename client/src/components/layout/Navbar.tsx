@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSocket } from "@/hooks/usesocket";
+import { getSocket } from "@/hooks/useSocket";
 
 const Navbar = () => {
   const [connected, setConnected] = useState(false);
